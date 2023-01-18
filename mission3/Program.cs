@@ -7,6 +7,8 @@ namespace mission3
     {
         static void Main(string[] args)
         {
+            //Create Board Variable
+            Board board = new Board();
             //print welcome
             Console.WriteLine("Hello Users, Welcome to the game.");
             Console.WriteLine("Player 1, please enter your name: ");
@@ -80,9 +82,42 @@ namespace mission3
             myList.Add(new List<int> { 1, 5, 9 });
 
 
+
+
             int count = 0;
             while (count < 9)
             {
+                //Test for win Check
+                bool win = false;
+                for (int i = 0; i < stringArray.Length; i++)
+                {
+                    if (stringArray[i] != "-")
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                win = board.CheckWin("vertical", stringArray, i);
+                                win = board.CheckWin("horizontal", stringArray, i);
+                                win = board.CheckWin("diag", stringArray, i);
+                                break;
+                            case 1:
+                                win = board.CheckWin("vertical", stringArray, i);
+                                break;
+                            case 2:
+                                win = board.CheckWin("vertical", stringArray, i);
+                                win = board.CheckWin("bdiag", stringArray, i);
+                                break;
+                            case 3:
+                                win =board.CheckWin("horizontal", stringArray, i);
+                                break;
+                            case 6:
+                                win = board.CheckWin("horizontal", stringArray, i);
+                                break;
+                        }
+                    }
+                }
+                Console.WriteLine(win);
+                //End Test
 
                 int currPos = 0;
 
