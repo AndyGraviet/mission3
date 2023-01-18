@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace mission3
 {
@@ -6,15 +7,6 @@ namespace mission3
     {
         static void Main(string[] args)
         {
-            //welcome user to game
-            //create game board array to store players choices
-            //ask each player for choice
-            //update game board array
-            //print board by calling supporting method class
-            //check for winner by calling method in supporting class
-
-
-            //some sudo code
             //print welcome
             Console.WriteLine("Hello Users, Welcome to the game.");
             Console.WriteLine("Player 1, please enter your name: ");
@@ -24,7 +16,6 @@ namespace mission3
 
 
             //print 2d array with all entries as _ (empty)
-            //while (some board logic to determine if entries are consecutive) -> this could be weird, could be a more efficient way
             Console.WriteLine("The following board illustrates the positions you will select. \n");
             string currOut = "";
 
@@ -45,23 +36,120 @@ namespace mission3
 
 
 
-            //game functionality
-            Console.WriteLine(p1 + ", please select a position");
-            //print the empty board
+
+
+            //declare game array, initial values are all -
+
             currOut = "";
-            for (int i = 1; i <= 9; i++)
+
+            string[] stringArray = new string[9];
+            for (int i=0; i < stringArray.Length; i++)
             {
-                if (i % 3 == 0)
+                stringArray[i] = "-";
+            }
+
+            
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                if ((i + 1) % 3 == 0)
                 {
-                    currOut += $"_ \n";
+                    currOut += $"{stringArray[i]} \n";
                 }
                 else
                 {
-                    currOut += "_ ";
+                    currOut += stringArray[i] + " ";
                 }
             }
 
             Console.WriteLine(currOut);
+
+
+
+
+
+            //while winning combination is not found, continue playing
+            //
+            List<List<int>> myList = new List<List<int>>();
+            myList.Add(new List<int> { 1, 2, 3 });
+            myList.Add(new List<int> { 4, 5, 6 });
+            myList.Add(new List<int> { 7, 8, 9 });
+            myList.Add(new List<int> { 1, 4, 7 });
+            myList.Add(new List<int> { 2, 5, 8 });
+            myList.Add(new List<int> { 3, 6, 9 });
+            myList.Add(new List<int> { 7, 5, 3 });
+            myList.Add(new List<int> { 1, 5, 9 });
+
+
+            int count = 0;
+            while (count < 9)
+            {
+
+                int currPos = 0;
+
+                
+                Console.WriteLine(p1 + ", please select a position");
+                currPos = int.Parse(Console.ReadLine());
+
+                while (stringArray[currPos - 1] != "-")
+                {
+                    Console.WriteLine(p1 + " This position is taken, please select another");
+                    currPos = int.Parse(Console.ReadLine());
+                }
+
+                stringArray[currPos - 1] = "X";
+                //input position to array
+                currOut = "";
+                for (int i = 0; i < stringArray.Length; i++)
+                {
+                    if ((i + 1) % 3 == 0)
+                    {
+                        currOut += $"{stringArray[i]} \n";
+                    }
+                    else
+                    {
+                        currOut += stringArray[i] + " ";
+                    }
+                }
+                count++;
+                Console.WriteLine(currOut);
+
+
+                //repeat process for 2nd player
+                Console.WriteLine(p2 + ", please select a position");
+                currPos = int.Parse(Console.ReadLine());
+
+                while (stringArray[currPos - 1] != "-")
+                {
+                    Console.WriteLine(p2 + " This position is taken, please select another");
+                    currPos = int.Parse(Console.ReadLine());
+                }
+
+                stringArray[currPos - 1] = "O";
+                currOut = "";
+                for (int i = 0; i < stringArray.Length; i++)
+                {
+                    if ((i + 1) % 3 == 0)
+                    {
+                        currOut += $"{stringArray[i]} \n";
+                    }
+                    else
+                    {
+                        currOut += stringArray[i] + " ";
+                    }
+                }
+                count++;
+                Console.WriteLine(currOut);
+            }
+
+
+
+            
+
+
+
+
+
+
 
 
 
