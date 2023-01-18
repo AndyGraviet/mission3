@@ -68,7 +68,8 @@ namespace mission3
 
 
             //while winning combination is not found, continue playing
-            //
+            //plan here is to do a list of lists and then check if a list of the users selected elements can be found here
+            //this probably wont' work
             List<List<int>> myList = new List<List<int>>();
             myList.Add(new List<int> { 1, 2, 3 });
             myList.Add(new List<int> { 4, 5, 6 });
@@ -111,12 +112,33 @@ namespace mission3
                     }
                 }
                 count++;
+
+                //another little check here
+                if (count == 9)
+                {
+                    currOut = "";
+                    for (int i = 0; i < stringArray.Length; i++)
+                    {
+                        if ((i + 1) % 3 == 0)
+                        {
+                            currOut += $"{stringArray[i]} \n";
+                        }
+                        else
+                        {
+                            currOut += stringArray[i] + " ";
+                        }
+                    }
+                    Console.WriteLine(currOut);
+                    break;
+                }
+
                 Console.WriteLine(currOut);
 
 
                 //repeat process for 2nd player
                 Console.WriteLine(p2 + ", please select a position");
                 currPos = int.Parse(Console.ReadLine());
+
 
                 while (stringArray[currPos - 1] != "-")
                 {
@@ -141,6 +163,9 @@ namespace mission3
                 Console.WriteLine(currOut);
             }
 
+
+            //done with loop
+            
 
 
             
