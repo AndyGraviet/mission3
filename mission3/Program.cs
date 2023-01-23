@@ -9,6 +9,8 @@ namespace mission3
         {
             //Create Board Variable
             Board board = new Board();
+            //Set Win Variable to False
+            bool WinCondition = false;
             //print welcome
             Console.WriteLine("Hello Users, Welcome to the game.");
             Console.WriteLine("Player 1, please enter your name: ");
@@ -85,39 +87,9 @@ namespace mission3
 
 
             int count = 0;
-            while (count < 9)
+            while (count < 9 & WinCondition == false)
             {
-                //Test for win Check
-                bool win = false;
-                for (int i = 0; i < stringArray.Length; i++)
-                {
-                    if (stringArray[i] != "-")
-                    {
-                        switch (i)
-                        {
-                            case 0:
-                                win = board.CheckWin("vertical", stringArray, i);
-                                win = board.CheckWin("horizontal", stringArray, i);
-                                win = board.CheckWin("diag", stringArray, i);
-                                break;
-                            case 1:
-                                win = board.CheckWin("vertical", stringArray, i);
-                                break;
-                            case 2:
-                                win = board.CheckWin("vertical", stringArray, i);
-                                win = board.CheckWin("bdiag", stringArray, i);
-                                break;
-                            case 3:
-                                win =board.CheckWin("horizontal", stringArray, i);
-                                break;
-                            case 6:
-                                win = board.CheckWin("horizontal", stringArray, i);
-                                break;
-                        }
-                    }
-                }
-                Console.WriteLine(win);
-                //End Test
+                WinCondition = board.WinCheck(stringArray);
 
                 int currPos = 0;
 
@@ -150,6 +122,7 @@ namespace mission3
 
 
                 //repeat process for 2nd player
+                board.WinCheck(stringArray);
                 Console.WriteLine(p2 + ", please select a position");
                 currPos = int.Parse(Console.ReadLine());
 

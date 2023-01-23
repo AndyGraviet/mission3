@@ -10,8 +10,46 @@ namespace mission3
 			//contain method that receives game board aray as input and returns winner (if there was one)
 		}
 
+		public bool WinCheck(string[] stringArray)
+		{
+            //Test for win Check
+            bool win = false;
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                if (stringArray[i] != "-")
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            win = CheckWin("vertical", stringArray, i);
+                            if (win == true) { break; }
+                            win = CheckWin("horizontal", stringArray, i);
+                            if (win == true) { break; }
+                            win = CheckWin("diag", stringArray, i);
+                            break;
+                        case 1:
+                            win = CheckWin("vertical", stringArray, i);
+                            break;
+                        case 2:
+                            win = CheckWin("vertical", stringArray, i);
+                            if (win == true) { break; }
+                            win = CheckWin("bdiag", stringArray, i);
+                            break;
+                        case 3:
+                            win = CheckWin("horizontal", stringArray, i);
+                            break;
+                        case 6:
+                            win = CheckWin("horizontal", stringArray, i);
+                            break;
+                    }
+                }
+            }
+            return win;
+            //End Test
+        }
 
-		public bool CheckWin(string checkType, string[] board, int pos)
+
+        public bool CheckWin(string checkType, string[] board, int pos)
 		{
 			if (checkType == "horizontal")
 			{
