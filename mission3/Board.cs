@@ -1,16 +1,31 @@
 ﻿using System;
+using System.Drawing;
+
 namespace mission3
 {
 	public class Board
 	{
-		public static void BoardFunctionality()
-		{
-			//receive board array from driver class
-			//contain method that prints board based on info passed in
-			//contain method that receives game board aray as input and returns winner (if there was one)
-		}
+        //receive board array from driver class
+        //contain method that prints board based on info passed in
+        //contain method that receives game board aray as input and returns winner (if there was one)
+        public void BoardFunctionality(string[] stringArray)
+        {
+            string currOut = "";
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                if ((i + 1) % 3 == 0)
+                {
+                    currOut += $"{stringArray[i]} \n";
+                }
+                else
+                {
+                    currOut += stringArray[i] + " ";
+                }
+            }
+            Console.WriteLine(currOut);
+        }
 
-		public bool WinCheck(string[] stringArray)
+        public bool[] WinCheck(string[] stringArray)
 		{
             //Test for win Check
             bool[] win = new bool[2];

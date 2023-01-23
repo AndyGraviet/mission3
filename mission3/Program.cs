@@ -106,21 +106,9 @@ namespace mission3
                 }
 
                 stringArray[currPos - 1] = "X";
-                //input position to array
-                currOut = "";
-                for (int i = 0; i < stringArray.Length; i++)
-                {
-                    if ((i + 1) % 3 == 0)
-                    {
-                        currOut += $"{stringArray[i]} \n";
-                    }
-                    else
-                    {
-                        currOut += stringArray[i] + " ";
-                    }
-                }
+                //increase count and print board
                 count++;
-                Console.WriteLine(currOut);
+                board.BoardFunctionality(stringArray);
 
 
                 //repeat process for 2nd player
@@ -135,20 +123,8 @@ namespace mission3
                 }
 
                 stringArray[currPos - 1] = "O";
-                currOut = "";
-                for (int i = 0; i < stringArray.Length; i++)
-                {
-                    if ((i + 1) % 3 == 0)
-                    {
-                        currOut += $"{stringArray[i]} \n";
-                    }
-                    else
-                    {
-                        currOut += stringArray[i] + " ";
-                    }
-                }
                 count++;
-                Console.WriteLine(currOut);
+                board.BoardFunctionality(stringArray);
             }
 
 
