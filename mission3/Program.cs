@@ -122,7 +122,7 @@ namespace mission3
 
 
                 //repeat process for 2nd player
-                board.WinCheck(stringArray);
+                WinCondition = board.WinCheck(stringArray);
                 Console.WriteLine(p2 + ", please select a position");
                 currPos = int.Parse(Console.ReadLine());
 

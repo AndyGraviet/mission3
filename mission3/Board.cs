@@ -22,9 +22,9 @@ namespace mission3
                     {
                         case 0:
                             win = CheckWin("vertical", stringArray, i);
-                            if (win == true) { break; }
+                            if (win == true) { goto End; }
                             win = CheckWin("horizontal", stringArray, i);
-                            if (win == true) { break; }
+                            if (win == true) { goto End; }
                             win = CheckWin("diag", stringArray, i);
                             break;
                         case 1:
@@ -32,7 +32,7 @@ namespace mission3
                             break;
                         case 2:
                             win = CheckWin("vertical", stringArray, i);
-                            if (win == true) { break; }
+                            if (win == true) { goto End; }
                             win = CheckWin("bdiag", stringArray, i);
                             break;
                         case 3:
@@ -45,7 +45,9 @@ namespace mission3
                 }
             }
             return win;
-            //End Test
+        //End Test
+        End:
+            return win;
         }
 
 
