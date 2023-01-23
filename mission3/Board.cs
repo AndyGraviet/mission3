@@ -13,7 +13,9 @@ namespace mission3
 		public bool WinCheck(string[] stringArray)
 		{
             //Test for win Check
-            bool win = false;
+            bool[] win = new bool[2];
+            win[0] = false;
+            win[1] = false;
             for (int i = 0; i < stringArray.Length; i++)
             {
                 if (stringArray[i] != "-")
@@ -21,25 +23,25 @@ namespace mission3
                     switch (i)
                     {
                         case 0:
-                            win = CheckWin("vertical", stringArray, i);
-                            if (win == true) { goto End; }
-                            win = CheckWin("horizontal", stringArray, i);
-                            if (win == true) { goto End; }
-                            win = CheckWin("diag", stringArray, i);
+                            win[0] = CheckWin("vertical", stringArray, i);
+                            if (win[0] == true) { goto End; }
+                            win[0] = CheckWin("horizontal", stringArray, i);
+                            if (win[0] == true) { goto End; }
+                            win[0] = CheckWin("diag", stringArray, i);
                             break;
                         case 1:
-                            win = CheckWin("vertical", stringArray, i);
+                            win[0] = CheckWin("vertical", stringArray, i);
                             break;
                         case 2:
-                            win = CheckWin("vertical", stringArray, i);
-                            if (win == true) { goto End; }
-                            win = CheckWin("bdiag", stringArray, i);
+                            win[0] = CheckWin("vertical", stringArray, i);
+                            if (win[0] == true) { goto End; }
+                            win[0] = CheckWin("bdiag", stringArray, i);
                             break;
                         case 3:
-                            win = CheckWin("horizontal", stringArray, i);
+                            win[0] = CheckWin("horizontal", stringArray, i);
                             break;
                         case 6:
-                            win = CheckWin("horizontal", stringArray, i);
+                            win[0] = CheckWin("horizontal", stringArray, i);
                             break;
                     }
                 }

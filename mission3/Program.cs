@@ -10,7 +10,9 @@ namespace mission3
             //Create Board Variable
             Board board = new Board();
             //Set Win Variable to False
-            bool WinCondition = false;
+            bool[] WinCondition = new bool[2];
+            WinCondition[0] = false;
+            WinCondition[1] = false;
             //print welcome
             Console.WriteLine("Hello Users, Welcome to the game.");
             Console.WriteLine("Player 1, please enter your name: ");
@@ -87,7 +89,7 @@ namespace mission3
 
 
             int count = 0;
-            while (count < 9 & WinCondition == false)
+            while (count < 9 & WinCondition[0] == false)
             {
                 WinCondition = board.WinCheck(stringArray);
 
