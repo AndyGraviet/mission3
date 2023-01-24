@@ -7,6 +7,12 @@ namespace mission3
     {
         static void Main(string[] args)
         {
+            //Create Board Variable
+            Board board = new Board();
+            //Set Win Variable to False
+            bool[] WinCondition = new bool[2];
+            WinCondition[0] = false;
+            WinCondition[1] = false;
             //print welcome
             Console.WriteLine("Hello Users, Welcome to the game.");
             Console.WriteLine("Player 1, please enter your name: ");
@@ -81,9 +87,13 @@ namespace mission3
             myList.Add(new List<int> { 1, 5, 9 });
 
 
+
+
             int count = 0;
-            while (count < 9)
+            while (count < 9 & WinCondition[0] == false)
             {
+                WinCondition = board.WinCheck(stringArray);
+                if (WinCondition[0] == true) { goto EndOfGame; }
 
                 int currPos = 0;
 
@@ -98,44 +108,15 @@ namespace mission3
                 }
 
                 stringArray[currPos - 1] = "X";
-                //input position to array
-                currOut = "";
-                for (int i = 0; i < stringArray.Length; i++)
-                {
-                    if ((i + 1) % 3 == 0)
-                    {
-                        currOut += $"{stringArray[i]} \n";
-                    }
-                    else
-                    {
-                        currOut += stringArray[i] + " ";
-                    }
-                }
+                //increase count and print board
                 count++;
+                board.BoardFunctionality(stringArray);
 
-                //another little check here
-                if (count == 9)
-                {
-                    currOut = "";
-                    for (int i = 0; i < stringArray.Length; i++)
-                    {
-                        if ((i + 1) % 3 == 0)
-                        {
-                            currOut += $"{stringArray[i]} \n";
-                        }
-                        else
-                        {
-                            currOut += stringArray[i] + " ";
-                        }
-                    }
-                    Console.WriteLine(currOut);
-                    break;
-                }
-
-                Console.WriteLine(currOut);
 
 
                 //repeat process for 2nd player
+                WinCondition = board.WinCheck(stringArray);
+                if (WinCondition[0] == true) { goto EndOfGame; }
                 Console.WriteLine(p2 + ", please select a position");
                 currPos = int.Parse(Console.ReadLine());
 
@@ -147,29 +128,34 @@ namespace mission3
                 }
 
                 stringArray[currPos - 1] = "O";
-                currOut = "";
-                for (int i = 0; i < stringArray.Length; i++)
+                count++;
+                board.BoardFunctionality(stringArray);
+            }
+
+
+
+        //Prints winner of game
+        EndOfGame:
+            {
+                if (WinCondition[0] == true)
                 {
-                    if ((i + 1) % 3 == 0)
+                    string winnerName = "";
+                    if (WinCondition[1] == true)
                     {
-                        currOut += $"{stringArray[i]} \n";
+                        winnerName = p1;
                     }
                     else
                     {
-                        currOut += stringArray[i] + " ";
+                        winnerName = p2;
                     }
+
+                    Console.WriteLine(winnerName + " has won, Congrats!");
                 }
-                count++;
-                Console.WriteLine(currOut);
             }
 
 
             //done with loop
             
-
-
-            
-
 
 
 
