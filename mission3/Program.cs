@@ -92,6 +92,7 @@ namespace mission3
             while (count < 9 & WinCondition[0] == false)
             {
                 WinCondition = board.WinCheck(stringArray);
+                if (WinCondition[0] == true) { goto EndOfGame; }
 
                 int currPos = 0;
 
@@ -113,6 +114,7 @@ namespace mission3
 
                 //repeat process for 2nd player
                 WinCondition = board.WinCheck(stringArray);
+                if (WinCondition[0] == true) { goto EndOfGame; }
                 Console.WriteLine(p2 + ", please select a position");
                 currPos = int.Parse(Console.ReadLine());
 
@@ -129,20 +131,23 @@ namespace mission3
 
 
 
-            //Prints winner of game
-            if (WinCondition[0] == true)
+        //Prints winner of game
+        EndOfGame:
             {
-                string winnerName = "";
-                if (WinCondition[1] == true)
+                if (WinCondition[0] == true)
                 {
-                    winnerName = p1;
-                }
-                else
-                {
-                    winnerName = p2;
-                }
+                    string winnerName = "";
+                    if (WinCondition[1] == true)
+                    {
+                        winnerName = p1;
+                    }
+                    else
+                    {
+                        winnerName = p2;
+                    }
 
-                Console.WriteLine(winnerName + " has won, Congrats!");
+                    Console.WriteLine(winnerName + " has won, Congrats!");
+                }
             }
 
 
