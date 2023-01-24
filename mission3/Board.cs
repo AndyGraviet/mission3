@@ -25,7 +25,7 @@ namespace mission3
             Console.WriteLine(currOut);
         }
 
-        public bool[] WinCheck(string[] stringArray)
+		public bool[] WinCheck(string[] stringArray)
 		{
             //Test for win Check
             bool[] win = new bool[2];
@@ -38,25 +38,30 @@ namespace mission3
                     switch (i)
                     {
                         case 0:
-                            win[0] = CheckWin("vertical", stringArray, i);
+                            win = CheckWin("vertical", stringArray, i);
                             if (win[0] == true) { goto End; }
-                            win[0] = CheckWin("horizontal", stringArray, i);
+                            win = CheckWin("horizontal", stringArray, i);
                             if (win[0] == true) { goto End; }
-                            win[0] = CheckWin("diag", stringArray, i);
+                            win = CheckWin("diag", stringArray, i);
+                            if (win[0] == true) { goto End; }
                             break;
                         case 1:
-                            win[0] = CheckWin("vertical", stringArray, i);
+                            win = CheckWin("vertical", stringArray, i);
+                            if (win[0] == true) { goto End; }
                             break;
                         case 2:
-                            win[0] = CheckWin("vertical", stringArray, i);
+                            win = CheckWin("vertical", stringArray, i);
                             if (win[0] == true) { goto End; }
-                            win[0] = CheckWin("bdiag", stringArray, i);
+                            win = CheckWin("bdiag", stringArray, i);
+                            if (win[0] == true) { goto End; }
                             break;
                         case 3:
-                            win[0] = CheckWin("horizontal", stringArray, i);
+                            win = CheckWin("horizontal", stringArray, i);
+                            if (win[0] == true) { goto End; }
                             break;
                         case 6:
-                            win[0] = CheckWin("horizontal", stringArray, i);
+                            win = CheckWin("horizontal", stringArray, i);
+                            if (win[0] == true) { goto End; }
                             break;
                     }
                 }
@@ -68,45 +73,102 @@ namespace mission3
         }
 
 
-        public bool CheckWin(string checkType, string[] board, int pos)
+        public bool[] CheckWin(string checkType, string[] board, int pos)
 		{
+            bool[] winResult = new bool[2];
 			if (checkType == "horizontal")
 			{
 				// Compares a row of the board
 				if ((board[pos] == board[pos + 1]) & (board[pos] == board[pos + 2]))
 				{
-					return true;
+                    winResult[0] = true;
+                    if (board[pos] == "X")
+                    {
+                        winResult[1] = true;
+                    }
+                    else
+                    {
+                        winResult[1] = false;
+                    }
+					return winResult;
 				}
-				else { return false; }
+				else
+                {
+                    winResult[0] = false;
+                    return winResult;
+                }
 			}
 			else if (checkType == "vertical")
 			{
 				// compares a column of the board
                 if ((board[pos] == board[pos + 3]) & (board[pos] == board[pos + 6]))
                 {
-                    return true;
+                    winResult[0] = true;
+                    if (board[pos] == "X")
+                    {
+                        winResult[1] = true;
+                    }
+                    else
+                    {
+                        winResult[1] = false;
+                    }
+                    return winResult;
                 }
-                else { return false; }
+                else
+                {
+                    winResult[0] = false;
+                    return winResult;
+                }
             }
 			else if (checkType == "diag")
 			{
                 // compares a column of the board
                 if ((board[pos] == board[pos + 4]) & (board[pos] == board[pos + 8]))
                 {
-                    return true;
+                    winResult[0] = true;
+                    if (board[pos] == "X")
+                    {
+                        winResult[1] = true;
+                    }
+                    else
+                    {
+                        winResult[1] = false;
+                    }
+                    return winResult;
                 }
-                else { return false; }
+                else
+                {
+                    winResult[0] = false;
+                    return winResult;
+                }
             }
             else if (checkType == "bdiag")
             {
                 // compares a column of the board
                 if ((board[pos] == board[pos + 2]) & (board[pos] == board[pos + 6]))
                 {
-                    return true;
+                    winResult[0] = true;
+                    if (board[pos] == "X")
+                    {
+                        winResult[1] = true;
+                    }
+                    else
+                    {
+                        winResult[1] = false;
+                    }
+                    return winResult;
                 }
-                else { return false; }
+                else
+                {
+                    winResult[0] = false;
+                    return winResult;
+                }
             }
-            else { return false; }
+            else
+            {
+                winResult[0] = false;
+                return winResult;
+            }
 		}
 	}
 }

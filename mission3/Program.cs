@@ -129,7 +129,21 @@ namespace mission3
 
 
 
-            
+            //Prints winner of game
+            if (WinCondition[0] == true)
+            {
+                string winnerName = "";
+                if (WinCondition[1] == true)
+                {
+                    winnerName = p1;
+                }
+                else
+                {
+                    winnerName = p2;
+                }
+
+                Console.WriteLine(winnerName + " has won, Congrats!");
+            }
 
 
 
