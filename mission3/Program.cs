@@ -74,7 +74,8 @@ namespace mission3
 
 
             //while winning combination is not found, continue playing
-            //
+            //plan here is to do a list of lists and then check if a list of the users selected elements can be found here
+            //this probably wont' work
             List<List<int>> myList = new List<List<int>>();
             myList.Add(new List<int> { 1, 2, 3 });
             myList.Add(new List<int> { 4, 5, 6 });
@@ -112,11 +113,13 @@ namespace mission3
                 board.BoardFunctionality(stringArray);
 
 
+
                 //repeat process for 2nd player
                 WinCondition = board.WinCheck(stringArray);
                 if (WinCondition[0] == true) { goto EndOfGame; }
                 Console.WriteLine(p2 + ", please select a position");
                 currPos = int.Parse(Console.ReadLine());
+
 
                 while (stringArray[currPos - 1] != "-")
                 {
@@ -150,6 +153,9 @@ namespace mission3
                 }
             }
 
+
+            //done with loop
+            
 
 
 
